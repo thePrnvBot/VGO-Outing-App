@@ -13,13 +13,14 @@ MongoClient.connect(
         wtimeout: 2500,
         useNewUrlParse: true
     }
+)
     .catch(err => {
         console.error(err.stack)
         process.exit(1)
     })
+    
     .then(async client => {
-        app.listen(port, () => {
+        app.listen(port, () => { 
             console.log(`Listening on port ${port}`)
         })
     })
-)
