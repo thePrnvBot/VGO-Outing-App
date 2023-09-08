@@ -1,13 +1,22 @@
-import express from "express";
-import cors from "cors";
-import example from "./api/example.route.js"
+import 'dotenv/config'
+import express from 'express';
+import outingRoutes from './routes/example.js'
 
+// express app
 const app = express()
 
-app.use(cors())
+// middleware
 app.use(express.json())
 
-app.use("/api/v1/example", example)
-app.use("*", (req, res) => res.status(404).json({ error : "not found"}))
+app.use((req, res, next) => {
+  console.log(req.path, req.method)
+  next()
+})
 
-export default app
+// routes
+app.use('api/outingDetails',outingRoutes)
+
+// listen for requests
+app.listen(process.env.PORT, () => {
+  console.log('Listening on port', process.env.PORT)
+})
