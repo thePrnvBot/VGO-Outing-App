@@ -1,8 +1,8 @@
-const mongoose = require("mongoose")
+import mongoose from "mongoose";
 
 const Schema = mongoose.Schema
 
-const outingSchema = newSchema({
+const outingSchema = new Schema({
     leaveType : {
         type : String,
         required : true,
@@ -39,6 +39,8 @@ const outingSchema = newSchema({
         type : String,
         required : true
     }
-}, { timestamps : true})
+}, { timestamps: true })
 
-module.exports = mongoose.model('OutingDetail', outingSchema)
+const OutingDetail = mongoose.model('OutingDetail', outingSchema);
+
+export default OutingDetail;

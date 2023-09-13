@@ -1,6 +1,7 @@
 import 'dotenv/config'
 import express from 'express';
-import outingRoutes from './routes/example.js'
+import mongoose from 'mongoose';
+import outingRoutes from './routes/outings.js'
 
 // express app
 const app = express()
@@ -14,9 +15,15 @@ app.use((req, res, next) => {
 })
 
 // routes
-app.use('api/outingDetails',outingRoutes)
+app.use('/api/outings',outingRoutes)
 
-// listen for requests
-app.listen(process.env.PORT, () => {
-  console.log('Listening on port', process.env.PORT)
-})
+// connect to db
+mongoose.connect(process.env.VGO_DB_URI)
+  .then(() => {
+    app.listen(process.env.PORT, () => {
+      console.log('Connected to DB & Listening on port', process.env.PORT)
+    })
+  })
+  .catch((error) => {
+    console.log(error)
+  })
