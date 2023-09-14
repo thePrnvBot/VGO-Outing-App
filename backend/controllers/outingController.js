@@ -21,7 +21,7 @@ const getOuting = async (req, res) => {
         return res.status(404).json({error : 'No such outing'})
     }
 
-    res.status(200).json(workout)
+    res.status(200).json(outing)
 }
 
 const createOuting = async (req, res) => {
