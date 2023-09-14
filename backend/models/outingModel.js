@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema
 
@@ -41,6 +41,4 @@ const outingSchema = new Schema({
     }
 }, { timestamps: true })
 
-const OutingDetail = mongoose.model('OutingDetail', outingSchema);
-
-export default OutingDetail;
+module.exports = mongoose.model('Outing', outingSchema)

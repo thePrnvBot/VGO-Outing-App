@@ -1,45 +1,25 @@
-import express from "express"
-const OutingDetail = "../models/outingModel.js"
+const express = require("express")
+const Outing  = require('../models/outingModel')
+const {
+    getOuting,
+    getOutings,
+    createOuting,
+    deleteOuting,
+    updateOuting
+} = require('../controllers/outingController')
 
 const router = express.Router()
 
 //Debug Route
 //router.route("/").get((req, res) => res.send("Hello World!"))
-router.get('/', (req, res) => {
-    res.json({msg : 'GET All Outing Details'})
-}) 
+router.get('/', getOutings) 
 
-router.get('/:id', (req, res) => {
-    res.json({msg : 'GET a specific Outing Detail'})
-}) 
+router.get('/:id', getOuting) 
 
-router.post('/', async (req, res) => {
-    const { leaveType, visitingPlace, reason, fromDate, fromTime, toDate, toTime } = req.body
+router.post('/', createOuting) 
 
-    try {
-        const outingDetail = await OutingDetail.create({
-            leaveType, 
-            visitingPlace, 
-            reason, 
-            fromDate, 
-            fromTime, 
-            toDate, 
-            toTime
-        })
-        res.status(200).json(outingDetail)
-    } catch (error) {
-        res.status(400).json({ error: error.message })
-    } 
+router.delete('/:id', deleteOuting) 
 
-    //res.json({msg : 'POST an Outing Detail'})
-}) 
+router.patch('/:id', updateOuting) 
 
-router.delete('/:id', (req, res) => {
-    res.json({msg : 'DELETE an Outing Detail'})
-}) 
-
-router.patch('/:id', (req, res) => {
-    res.json({msg : 'PATCH an Outing Detail'})
-}) 
-
-export default router
+module.exports = router 

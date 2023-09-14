@@ -1,7 +1,7 @@
-import 'dotenv/config'
-import express from 'express';
-import mongoose from 'mongoose';
-import outingRoutes from './routes/outings.js'
+require('dotenv').config()
+const express = require('express')
+const mongoose = require('mongoose')
+const outingRoutes = require('./routes/outings')
 
 // express app
 const app = express()
