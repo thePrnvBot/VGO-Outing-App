@@ -28,7 +28,7 @@ const createOuting = async (req, res) => {
     const { leaveType, visitingPlace, reason, fromDate, fromTime, toDate, toTime } = req.body
 
     try {
-        const outingDetail = await OutingDetail.create({
+        const outing = await Outing.create({
             leaveType, 
             visitingPlace, 
             reason, 
