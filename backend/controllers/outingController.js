@@ -46,11 +46,37 @@ const createOuting = async (req, res) => {
 }
 
 const deleteOuting = async (req, res) => {
+    const { id } = req.params
 
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({error : 'No such outing'})
+    }
+
+    const outing = await Outing.findOneAndDelete({_id : id})
+
+    if (!outing) {
+        return res.status(400).json({error : 'No such outing'})
+    }
+
+    res.status(200).json(outing)
 }
 
 const updateOuting = async (req, res) => {
+    const { id } = req.params
 
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({error : 'No such outing'})
+    }
+
+    const outing = await Outing.findByIdAndUpdate({_id : id}, {
+        ...req.body
+    })
+
+    if (!outing) {
+        return res.status(400).json({error : 'No such outing'})
+    }
+
+    res.status(200).json(outing)
 }
 
 module.exports = {
