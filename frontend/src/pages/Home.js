@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
+import { useOutingsContext } from "../hooks/useOutingsContext"
 
 import OutingDetails from '../components/OutingDetails'
+import OutingForm from "../components/OutingForm"
 
 const Home = () => {
-
-    const [outings, setOutings] = useState(null)
+    const {outings, dispatch} = useOutingsContext()
 
     useEffect(() => {
         const fetchOutings = async () => {
@@ -12,12 +13,12 @@ const Home = () => {
             const json = await response.json()
 
             if (response.ok) {
-                setOutings(json)
+                dispatch({type: 'SET_OUTINGS', payload: json})
             }
         }
 
         fetchOutings()
-    }, [])
+    }, [dispatch])
 
     return(
         <div className="home">
@@ -26,6 +27,7 @@ const Home = () => {
                     <OutingDetails key={outing._id} outing={outing} />
                 ))}
             </div>
+            <OutingForm />
         </div>
     )
 }
