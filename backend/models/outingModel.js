@@ -38,6 +38,13 @@ const outingSchema = new Schema({
     toTime : {
         type : String,
         required : true
+    },
+    leaveStatus : {
+        type : String,
+        default : 'Not Approved',
+        enum : [
+            'Approved',
+            'Not Approved']
     }
 }, { timestamps: true })
 

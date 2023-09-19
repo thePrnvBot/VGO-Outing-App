@@ -1,4 +1,35 @@
+import { useOutingsContext } from '../hooks/useOutingsContext'
+
 const OutingDetails = ({ outing }) => {
+
+    const { dispatch } = useOutingsContext()
+
+    const handleClick = async () => {
+        const response = await fetch('api/outings/' + outing._id, {
+            method: 'DELETE'
+        }) 
+
+        const json = await response.json()
+
+        if (response.ok) {
+            dispatch({type: 'DELETE_OUTING', payload: json})
+        }
+    }
+
+    const approveOuting = async () => {
+        const response = await fetch('api/outings/' + outing._id, {
+            method: 'PATCH'
+        }) 
+
+        var json = await response.json()
+
+        json = {...json, leaveStatus : "Approved"}
+
+        if (response.ok) {
+            dispatch({type: 'PATCH_OUTING', payload: json})
+        }
+    }
+
     return(
         <div className="outing-details">
             <p><strong>Leave Type: </strong>{outing.leaveType}</p>
@@ -8,6 +39,9 @@ const OutingDetails = ({ outing }) => {
             <p><strong>From Time: </strong>{outing.fromTime}</p>
             <p><strong>To Date: </strong>{outing.toDate}</p>
             <p><strong>To Time: </strong>{outing.toTime}</p>
+            <p><strong>Status: </strong>{outing.leaveStatus}</p>
+            <button onClick={handleClick}>Delete</button>
+            <button onClick={approveOuting}>Approve</button>
         </div>
     )
 }

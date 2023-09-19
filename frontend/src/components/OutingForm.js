@@ -11,6 +11,7 @@ const OutingForm = () => {
     const [fromTime, setFromTime] = useState("")
     const [toDate, setToDate] = useState("")
     const [toTime, setToTime] = useState("")
+    //const [leaveStatus, setleaveStatus] = useState("")
     const [error, setError] = useState(null)
 
     const handleSubmit = async (e) => {
@@ -40,6 +41,7 @@ const OutingForm = () => {
             setFromTime("")
             setToDate("")
             setToTime("")
+            //setleaveStatus("")
             setError(null)
             console.log("Outing request created", json)
             dispatch({type: 'CREATE_OUTING', payload: json})
