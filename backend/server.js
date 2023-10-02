@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const outingRoutes = require('./routes/outings')
+const userRoutes = require('./routes/user')
 
 // express app
 const app = express()
@@ -15,7 +16,8 @@ app.use((req, res, next) => {
 })
 
 // routes
-app.use('/api/outings',outingRoutes)
+app.use('/api/outings', outingRoutes)
+app.use('/api/user', userRoutes)
 
 // connect to db
 mongoose.connect(process.env.VGO_DB_URI)
