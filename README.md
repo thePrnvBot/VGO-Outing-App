@@ -18,8 +18,4 @@ Welcome to the VGO-Outing-App GitHub repository! This application is designed to
 
 We welcome contributions from the community! If you'd like to contribute to the development of VGO-Outing-App, please follow our [contribution guidelines](CONTRIBUTING.md).
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 Thank you for using VGO-Outing-App! We hope this application simplifies the outing approval process for students at VIT Chennai.
