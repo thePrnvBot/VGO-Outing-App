@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useOutingsContext } from "../hooks/useOutingsContext"
 
 import OutingDetails from '../components/OutingDetails'
