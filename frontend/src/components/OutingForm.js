@@ -1,8 +1,10 @@
 import { useState } from "react"
 import { useOutingsContext } from "../hooks/useOutingsContext"
+import { useAuthContext } from "../hooks/useAuthContext"
 
 const OutingForm = () => {
     const { dispatch } = useOutingsContext()
+    const { user } = useAuthContext()
 
     const [leaveType, setLeaveType] = useState("")
     const [visitingPlace, setVisitingPlace] = useState("")
@@ -17,13 +19,19 @@ const OutingForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
+        if (!user) {
+            setError('You must be logged in')
+            return
+        }
+
         const outing = {leaveType, visitingPlace, reason, fromDate, fromTime, toDate, toTime}
 
         const response = await fetch('/api/outings', {
             method: 'POST',
             body: JSON.stringify(outing),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${user.token}`
             }
         })
 

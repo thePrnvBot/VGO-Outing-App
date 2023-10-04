@@ -1,12 +1,22 @@
 import { useOutingsContext } from '../hooks/useOutingsContext'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 const OutingDetails = ({ outing }) => {
 
     const { dispatch } = useOutingsContext()
+    const { user } = useAuthContext()
 
     const handleClick = async () => {
+
+        if (!user) {
+            return
+        }
+
         const response = await fetch('api/outings/' + outing._id, {
-            method: 'DELETE'
+            method: 'DELETE',
+            headers : {
+                'Authorization': `Bearer ${user.token}`
+            }
         }) 
 
         const json = await response.json()

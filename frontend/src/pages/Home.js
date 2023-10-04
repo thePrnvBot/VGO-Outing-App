@@ -1,15 +1,21 @@
 import { useEffect } from "react"
 import { useOutingsContext } from "../hooks/useOutingsContext"
+import { useAuthContext } from "../hooks/useAuthContext"
 
 import OutingDetails from '../components/OutingDetails'
 import OutingForm from "../components/OutingForm"
 
 const Home = () => {
     const {outings, dispatch} = useOutingsContext()
+    const { user } = useAuthContext()
 
     useEffect(() => {
         const fetchOutings = async () => {
-            const response = await fetch('/api/outings')
+            const response = await fetch('/api/outings', {
+                headers: {
+                    'Authorization': `Bearer ${user.token}`
+                }
+            })
             const json = await response.json()
 
             if (response.ok) {
@@ -17,8 +23,11 @@ const Home = () => {
             }
         }
 
-        fetchOutings()
-    }, [dispatch])
+        if ( user ) {
+            fetchOutings()
+        }
+        
+    }, [dispatch, user])
 
     return(
         <div className="home">

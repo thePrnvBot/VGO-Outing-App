@@ -7,8 +7,11 @@ const {
     deleteOuting,
     updateOuting
 } = require('../controllers/outingController')
+const requireAuth = require('../middleware/requireAuth')
 
 const router = express.Router()
+
+router.use(requireAuth)
 
 //Debug Route
 //router.route("/").get((req, res) => res.send("Hello World!"))
