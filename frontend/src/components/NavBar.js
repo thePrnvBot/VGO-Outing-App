@@ -1,37 +1,30 @@
 import { Link } from "react-router-dom"
-import { useLogout } from "../hooks/useLogout"
-import { useAuthContext } from "../hooks/useAuthContext"
-
+import vitlogo from'../assets/vitlogo.jpg'
+import backbutton from '../assets/backbutton.png'
+import vlogo from '../assets/vlogo.jpg'; 
+import '../index.css'
 const Navbar = () => {
-    const { logout } = useLogout()
-    const { user } = useAuthContext()
-
-    const handleClick = () => {
-        logout()
-    }
     
     return(
-        <header>
-            <div className="container">
-                <Link to="/">
-                    <h1>Outing Portal</h1>
-                </Link>
-                <nav>
-                    {user && (
-                        <div>
-                            <span>{user.email}</span>
-                            <button onClick={handleClick}>Logout</button>
-                        </div>
-                    )}
-                    {!user && (
-                        <div>
-                            <Link to="/login">Login</Link>
-                            <Link to="/signup">Signup</Link>
-                        </div>
-                    )}
-                </nav>
-            </div>
-        </header>
+        <div className="top-bar">
+        <div className="back-button">
+          <img src={backbutton} alt="Back" />
+        </div>
+        <div class="navbar">
+          <div class="nbar">
+          <ul>
+              <li><a href="https://chennai.vit.ac.in/" class="nav-item">Home</a></li>
+              <li><a href="https://chennai.vit.ac.in/about/contactus/" class="nav-item">Contact</a></li>
+          </ul>
+          </div>
+        </div>   
+        <div className="vlogo">
+          <img src={vlogo} alt="Photo 1" />
+          </div>
+          <div className="vitlogo">
+          <img src={vitlogo} alt="Photo 2" />
+        </div>
+      </div>
     )
 }
 

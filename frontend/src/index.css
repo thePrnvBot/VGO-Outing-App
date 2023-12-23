@@ -1,128 +1,112 @@
-/* google font */
+/* Google Font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
 
-/* layout */
+/* Layout */
 :root {
-  --primary: #1aac83;
+  --primary: #FF0000;
   --error: #e7195a;
 }
 body {
   background: #f1f1f1;
   margin: 0;
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif; /* Added the fallback sans-serif font */
 }
+
 header {
   background: #fff;
 }
+
 header .container {
-  max-width: 1400px;
+  max-width: 100%; /* Adjusted to make the container fluid for smaller screens */
   margin: 0 auto;
   padding: 10px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 header a {
   color: #333;
   text-decoration: none;
 }
-.pages{
-  max-width: 1400px;
+
+.pages {
+  max-width: 100%; /* Adjusted to make the pages container fluid */
   padding: 20px;
   margin: 0 auto;
 }
 
-/* homepage */
+/* Homepage */
 .home {
   display: grid;
-  grid-template-columns: 3fr 1fr;
-  gap: 100px;
-}
-.outing-details {
-  background: #fff;
-  border-radius: 4px;
-  margin: 20px auto;
-  padding: 20px;
-  position: relative;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
-}
-.outing-details h4 {
-  margin: 0 0 10px 0;
-  font-size: 1.2em;
-  color: var(--primary);
-}
-.outing-details p {
-  margin: 0;
-  font-size: 0.9em;
-  color: #555;
-}
-.outing-details span {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  cursor: pointer;
-  background: #f1f1f1;
-  padding: 6px;
-  border-radius: 50%;
-  color: #333;
+  grid-template-columns: 1fr; /* Changed to a single column layout on smaller screens */
+  gap: 20px; /* Reduced the gap for better spacing on smaller screens */
 }
 
-/* new workout form */
-label, input {
-  display: block;
-}
-input {
-  padding: 10px;
-  margin-top: 10px;
-  margin-bottom: 20px;
-  width: 100%;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-form button {
-  background: var(--primary);
-  border: 0;
-  color: #fff;
-  padding: 10px;
-  font-family: "Poppins";
-  border-radius: 4px;
-  cursor: pointer;
-}
-div.error {
-  padding: 10px;
-  background: #ffefef;
-  border: 1px solid var(--error);
-  color: var(--error);
-  border-radius: 4px;
-  margin: 20px 0;
-}
-
-/* navbar */
-nav {
+.top-bar {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-}
-nav a {
-  margin-left: 10px;
-}
-/* auth forms */
-form.signup, form.login {
-  max-width: 400px;
-  margin: 40px auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 4px;
+  background-color: #000; /* Background color for the top bar */
+  padding: 10px;
+  color: #fff; /* Text color */
+  vertical-align: top; /* here */
+  height: 50px;
 }
 
-nav button {
-  background: #fff;
-  color: var(--primary);
-  border: 2px solid var(--primary);
-  padding: 6px 10px;
-  border-radius: 4px;
-  font-family: "Poppins";
-  cursor: pointer;
-  font-size: 1em;
-  margin-left: 10px;
+.navbar .nbar{
+  padding-left: 800px;
+}
+.navbar .nbar ul {
+  list-style-type: none;
+  float: left;
+  display: inline;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  overflow: hidden;
+}
+.navbar .nbar li{
+  float:left;
+}
+.navbar .nbar li a{
+  color: rgb(249, 234, 234);
+  display: inline-block;
+  padding: 14px;
+  text-decoration: none;
+}
+.navbar .nbar a:hover {
+text-decoration: underline;
+color: rgb(255, 255, 255);
+}
+
+.bottom-bar {
+  background-color: #000;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  color: #fff; /* Text color */
+  vertical-align: bottom;
+}
+
+
+
+
+/* Responsive layout changes */
+@media only screen and (max-width: 768px) {
+  .vlogo img {
+    max-width: 100%; /* Ensure images do not exceed the width of their container */
+    height: auto; /* Maintain the aspect ratio of the images */
+    display: block; /* Remove any extra spacing below the image */
+    margin: 0 auto; /* Center the images within their container */
+  }
+
+  .vitlogo img {
+    max-width: 100%; /* Ensure images do not exceed the width of their container */
+    height: auto; /* Maintain the aspect ratio of the images */
+    display: block; /* Remove any extra spacing below the image */
+    margin: 0 auto; /* Center the images within their container */
+  }
+
 }

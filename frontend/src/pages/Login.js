@@ -1,39 +1,64 @@
-import { useState } from "react"
-import { useLogin } from "../hooks/useLogin"
+import React, { useState } from 'react';
+import './Login.css';
+import styles from './Login.css';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const { login, error, isLoading } = useLogin()
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  // const history = useHistory();
+  const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-
-        await login(email, password)
+  const handleLogin = () => {
+    // Implement your login logic here
+    if (username === '21BAI1102' && password === 'admin') {
+      // Redirect to the welcome page upon successful login
+      // alert("Logged in");
+      navigate('/leaveapplication');
     }
+    else if(username == "proctor" || password == "admin"){
+      navigate('/leaveapproval');
+    }
+    else if(username == "" || password == ""){
+      alert("Not entered either username or password");
+    }
+    else{
+      alert("incorrect id or password");
+    }
+  };
 
-    return (
-        <form className="login" onSubmit={handleSubmit}>
-            <h3>Login Page</h3>
+  return (
+    <div className="login-container">
+        
+      <div className="login-box">
+        <h2>Login</h2>
+        <h3>Your one stop destination for leave requests and outing permissions.</h3>
+        <input
+          className="custom-input-username"
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          className="custom-input-password"
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button onClick={handleLogin}>Log In</button>
+      </div>
+    </div>
+  );
+};
 
-            <label>Email:</label>
-            <input 
-                type="email"
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-            />
-
-            <label>Password:</label>
-            <input 
-                type="password"
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
-            />
-
-            <button disabled={isLoading}>Login</button>
-            {error && <div className="error">{error}</div>}
-        </form>
-    )
+function LoginScreen(){
+  return (
+    <div className="App">
+      <Login />
+    </div>
+  );
 }
 
-export default Login
+export default LoginScreen;
